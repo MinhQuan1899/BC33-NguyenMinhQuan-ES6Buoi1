@@ -1,17 +1,25 @@
-let colorList = ['pallet', 'viridian','pewter','cerulean','vermillion','lavender','celadon','saffron','fuschia','cinnabar'];
+const colorList = ['pallet', 'viridian', 'pewter', 'cerulean', 'vermillion', 'lavender', 'celadon', 'saffron', 'fuschia', 'cinnabar'];
 
-let renderButton2 = () => {
-         for(let index = 0 ; index < colorList.length ;index++) {
-             let color = colorList[index];
-             let button = document.createElement('button');
-             button.className = 'btn';
-             button.innerHTML = color;
-             button.style.color = '#fff';
-             button.style.backgroundColor = color;
-             button.onclick = function () {
-                 document.querySelector('#house').style.color = color;
-             }
-             document.querySelector('#colorContainer').appendChild(button);
-         }
-     }
-     renderButton2();
+let renderButton = (colors) => {
+    let output = ''; //string html
+    for(let index = 0 ; index < colors.length;index++) {
+        //Mỗi lần duyệt lấy ra 1 màu
+        let color = colors[index];
+        output += `
+        <button class="color-button ${color}" style="background: ${color};" onclick="changeColor('${color}')"></button>
+        `
+    }
+    //Hiển thị output lên giao diện
+    document.querySelector('#colorContainer').innerHTML = output;
+
+}
+renderButton(colorList);
+
+window.changeColor = (colors) => {
+
+        var element = document.querySelector('#house');
+        element.classList.add(colors);
+    
+}
+
+
